@@ -6,6 +6,7 @@ import com.example.simple_board.post.model.PostRequest;
 import com.example.simple_board.post.model.PostViewRequest;
 import jakarta.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,9 @@ public class PostService {
                             return new RuntimeException("해당 게시글이 존재하지 않습니다 :" + postViewRequest.getPostId());
                         }
                 );
+    }
+
+    public List<PostEntity> all() {
+        return postRepository.findAll();
     }
 }
