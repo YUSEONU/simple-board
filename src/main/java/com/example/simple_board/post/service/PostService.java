@@ -34,7 +34,7 @@ public class PostService {
     }
 
     public PostEntity view(PostViewRequest postViewRequest) {
-        return postRepository.findById(postViewRequest.getPostId())
+        return postRepository.findFirstByIdAndStatusOrderByIdDesc(postViewRequest.getPostId(), "REGISTERED")
                 .map(it -> {
                     //entity 존재
                     if(!it.getPassword().equals(postViewRequest.getPassword())) {
