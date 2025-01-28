@@ -53,4 +53,23 @@ public class PostService {
     public List<PostEntity> all() {
         return postRepository.findAll();
     }
+
+    public void delete(@Valid PostViewRequest postViewRequest) {
+         postRepository.findById(postViewRequest.getPostId())
+                .map(it -> {
+                    //entity 존재
+                    if(!it.getPassword().equals(postViewRequest.getPassword())) {
+                        var format = "패스워드가 맞지 않습니다 %s vs %s";
+                        throw new RuntimeException(String.format(format, it.getPassword(), postViewRequest.getPassword()));
+                    }
+
+                    it.setStatus("UNREGISTERED");
+                    postRepository.save(it);
+                    return it;
+                }).orElseThrow(
+                        () -> {
+                            return new RuntimeException("해당 게시글이 존재하지 않습니다 :" + postViewRequest.getPostId());
+                        }
+                );
+    }
 }
