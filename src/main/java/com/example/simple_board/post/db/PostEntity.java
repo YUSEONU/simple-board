@@ -1,12 +1,15 @@
 package com.example.simple_board.post.db;
 
 
+import com.example.simple_board.reply.db.ReplyEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import java.time.LocalDateTime;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -43,5 +46,8 @@ public class PostEntity {
     private String content;
 
     private LocalDateTime postedAt;
+
+    @Transient
+    private List<ReplyEntity> replyList = List.of();
 
 }
