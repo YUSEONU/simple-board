@@ -3,6 +3,7 @@ package com.example.simple_board.post.db;
 
 import com.example.simple_board.board.db.BoardEntity;
 import com.example.simple_board.reply.db.ReplyEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -10,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Transient;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,7 +36,9 @@ public class PostEntity {
     private Long id;
 
     @ManyToOne
-    private BoardEntity board;
+    @ToString.Exclude
+    @JsonIgnore
+    private BoardEntity boardEntity;  //board => _id => board_id
 
     private String userName;
 
@@ -51,7 +55,9 @@ public class PostEntity {
 
     private LocalDateTime postedAt;
 
-    @Transient
+    @OneToMany(
+            mappedBy = "post"
+    )
     private List<ReplyEntity> replyList = List.of();
 
 }

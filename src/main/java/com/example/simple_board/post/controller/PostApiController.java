@@ -35,7 +35,8 @@ public class PostApiController {
             @Valid
             @RequestBody PostViewRequest postViewRequest
     ){
-        return postService.view(postViewRequest);
+        var entity = postService.view(postViewRequest);
+        return entity;
     }
 
     @GetMapping("/all")
