@@ -62,7 +62,7 @@ public class PostService {
                         }
                 );
     }
-
+    // 글 데이터들을 페이지 데이터로 처리
     public Api<List<PostEntity>> all(Pageable pageable) {
         var list = postRepository.findAll(pageable);
 

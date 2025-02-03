@@ -47,7 +47,7 @@ public class PostApiController {
     @GetMapping("/all")
     public Api<List<PostEntity>> list(
             @PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.DESC)
-            Pageable pageable
+            Pageable pageable //페이지 데이터 처리
     ) {
         return postService.all(pageable);
     }
