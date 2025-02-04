@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class BoardConverter {
+public class BoardConverter { //converter의 역할은 데이터를 변환해주는 것. 엔티티를 DTO로 변환.
 
     private final PostConverter postConverter;
 

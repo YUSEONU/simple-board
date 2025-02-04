@@ -18,7 +18,7 @@ public class PostConverter {
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())
                 .postedAt(postEntity.getPostedAt())
-                .boardId(postEntity.getBoard().getId())
+                .boardId(postEntity.getBoardEntity().getId())
                 .build()
                 ;
     }

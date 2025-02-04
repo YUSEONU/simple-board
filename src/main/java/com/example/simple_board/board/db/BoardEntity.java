@@ -34,7 +34,7 @@ public class BoardEntity {
     private String status;
 
     @OneToMany(
-            mappedBy = "board"
+            mappedBy = "boardEntity"
     )
     @Builder.Default
     @Where(clause = "status = 'REGISTERED'")
